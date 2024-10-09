@@ -11,9 +11,24 @@ pipeline {
 
         stage('Build Docker Image') {
             steps {
-                // Build the Docker image using the Dockerfile in the repository
                 script {
-                    docker.build('my-html-app')
+                    if (isUnix()) {
+                        sh 'docker build -t my-html-app .'
+                    } else {
+                        bat 'docker build -t my-html-app .'
+                    }
+                }
+            }
+        }
+
+        stage('Test Docker') {
+            steps {
+                script {
+                    if (isUnix()) {
+                        sh 'docker --version'
+                    } else {
+                        bat 'docker --version'
+                    }
                 }
             }
         }
