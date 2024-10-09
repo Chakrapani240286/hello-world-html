@@ -4,8 +4,8 @@ pipeline {
     stages {
         stage('Clone Repository') {
             steps {
-                // Clone the repository
-                git 'https://github.com/Chakrapani240286/hello-world-html'
+               // Specify 'main' branch instead of 'master'
+               git branch: 'main', url: 'https://github.com/Chakrapani240286/hello-world-html'
             }
         }
 
